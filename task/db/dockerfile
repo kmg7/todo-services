@@ -1,0 +1,19 @@
+FROM postgres:16-bullseye
+
+# Custom entrypoint script related
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /docker-entrypoint.sh
+# RUN chmod +x /entrypoint.sh
+
+COPY tables/* /docker-entrypoint-initdb.d/
+ENV POSTGRES_DB=taskdb
+ENV POSTGRES_USER=taskuser
+ENV POSTGRES_PASSWORD=password
+
+# Setting the custom env variables
+# ENV TASK_DB_NAME=taskdb
+# ENV TASK_DB_USER=taskuser
+# ENV TASK_DB_PASSWORD=password
+# ENTRYPOINT ["/entrypoint.sh"]
+
+EXPOSE 5432
